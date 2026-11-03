@@ -1,6 +1,6 @@
-FROM php:8.2-cli-alpine
+FROM php:8.3-cli-alpine
 
-# Install system dependencies & PHP extensions
+# Install system dependencies & libraries
 RUN apk add --no-cache \
     git \
     curl \
@@ -8,34 +8,42 @@ RUN apk add --no-cache \
     libxml2-dev \
     zip \
     unzip \
-    sqlite-dev
+    sqlite-dev \
+    oniguruma-dev \
+    linux-headers
 
-RUN docker-php-ext-install pdo pdo_sqlite pcntl bcmath
+# Install PHP extensions required by Laravel
+RUN docker-php-ext-install pdo pdo_sqlite pcntl bcmath mbstring opcache
 
-# Install Composer
-COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
+# Copy latest Composer binary
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-# Working directory
+# Set working directory
 WORKDIR /var/www/html
 
-# Copy codebase
+# Copy application files
 COPY . .
 
-# Install PHP production dependencies
-RUN composer install --no-dev --optimize-autoloader --no-interaction
+# Install PHP production dependencies with optimized autoloader
+RUN composer install --no-dev --optimize-autoloader --no-interaction --ignore-platform-reqs
 
-# Permissions for storage & bootstrap cache
-RUN mkdir -p storage/framework/sessions storage/framework/views storage/framework/cache database && \
+# Prepare writable storage & database
+RUN mkdir -p storage/framework/sessions \
+             storage/framework/views \
+             storage/framework/cache \
+             storage/logs \
+             bootstrap/cache \
+             database && \
     touch database/database.sqlite && \
     chmod -R 777 storage bootstrap/cache database
 
-# Environment variables
+# Environment configuration
 ENV APP_ENV=production
 ENV APP_DEBUG=false
 ENV LOG_CHANNEL=stderr
-ENV PORT=8080
+ENV PORT=10000
 
-EXPOSE 8080
+EXPOSE 10000
 
-# Start Laravel production server binding to dynamic $PORT
-CMD sh -c "php artisan key:generate --force && php artisan config:clear && php artisan view:clear && php artisan serve --host=0.0.0.0 --port=${PORT:-8080}"
+# Start Laravel production server binding dynamically to Render's $PORT
+CMD sh -c "php artisan key:generate --force && php artisan config:clear && php artisan view:clear && php artisan serve --host=0.0.0.0 --port=${PORT:-10000}"
