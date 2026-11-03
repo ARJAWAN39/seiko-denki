@@ -50,9 +50,8 @@
                             <div>
                                 <span class="font-bold text-slate-900 block text-xs uppercase text-slate-400">Plant Address</span>
                                 <p class="leading-relaxed text-xs sm:text-sm text-slate-700 font-normal">
-                                    No. 8, Jalan Firma 1/1, PLO 94,<br />
-                                    Kawasan Perindustrian Tebrau 1,<br />
-                                    81100 Johor Bahru, Johor, Malaysia.
+                                    Plo 95, Jalan Cyber 6, Kawasan Perindustrian Senai Fasa 3,<br />
+                                    81400 Senai, Johor Darul Ta'zim, Malaysia.
                                 </p>
                             </div>
                         </div>

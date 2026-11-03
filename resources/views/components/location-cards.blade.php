@@ -26,7 +26,7 @@
                     Manufacturing Plant
                 </h4>
                 <p class="text-xs sm:text-sm text-white/85 leading-relaxed font-normal mb-5">
-                    Plo 95, Jalan Cyber 6, Taman Perindustrian Senai 3, 81400 Senai, Johor, Malaysia.
+                    Plo 95, Jalan Cyber 6, Kawasan Perindustrian Senai Fasa 3, 81400 Senai, Johor Darul Ta'zim, Malaysia.
                 </p>
                 <a href="tel:+6075998282" class="inline-flex items-center gap-2.5 text-white/95 text-xs sm:text-sm font-semibold hover:text-sky-300 transition-colors">
                     <i data-lucide="phone" class="w-4 h-4 text-sky-300"></i>
