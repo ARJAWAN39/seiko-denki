@@ -4,19 +4,41 @@
 
 @section('content')
 
-<x-page-hero 
-    title="About Seiko Denki" 
-    image="{{ asset('images/hd/about_hero.jpg') }}" 
-    badgeWord1="About" 
-    badgeWord2="Seiko Denki" 
-/>
+<!-- 1. Top Section: Dedicated Seiko Denki Leadership & Team Hero (All 10 Members Fully Visible) -->
+<section class="relative w-full overflow-hidden bg-slate-950 select-none">
+    
+    <!-- Hero Image Container with calibrated aspect ratio to show all 10 team members from edge to edge -->
+    <div class="relative w-full aspect-[16/8] sm:aspect-[21/9] lg:aspect-[2.7/1] min-h-[360px] max-h-[620px] overflow-hidden">
+        <img 
+            src="{{ asset('images/real/seiko_team_management.png') }}" 
+            alt="Seiko Denki Management & Engineering Leadership Team" 
+            class="w-full h-full object-cover object-[center_20%] select-none pointer-events-none transform will-change-transform"
+        >
+        
+        <!-- Subtle Vignettes to enhance contrast while preserving faces -->
+        <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-slate-950/40 pointer-events-none"></div>
+        <div class="absolute inset-0 bg-gradient-to-r from-slate-950/40 via-transparent to-slate-950/40 pointer-events-none"></div>
 
-<!-- 2. Section: Quality Wire Harness Experts & High-Bay Warehouse (Figma Exact Replica with Internet Photography) -->
-<section class="relative bg-white pt-20 sm:pt-28 lg:pt-36 pb-16 sm:pb-20 overflow-hidden">
+        <!-- Floating Royal Blue Badge (Compact & Anchored at bottom-left) -->
+        <div class="absolute bottom-0 left-0 z-20 w-full max-w-[1400px] mx-auto px-4 sm:px-10 lg:px-12 pointer-events-none flex items-end">
+            <div class="inline-block bg-[#1b54a5] text-white px-5 sm:px-8 py-4 sm:py-6 shadow-2xl rounded-t-xl sm:rounded-t-2xl border-t border-white/20 pointer-events-auto">
+                <span class="w-2 h-2 sm:w-2.5 sm:h-2.5 bg-white block mb-1.5 sm:mb-2"></span>
+                <h1 class="text-xl sm:text-2xl lg:text-3xl font-extrabold text-white tracking-tight leading-tight">
+                    About<br>
+                    <span class="font-normal text-white/95">Seiko Denki</span>
+                </h1>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+<!-- 2. Section: Quality Wire Harness Experts (Only this team photo at top, redundant warehouse removed) -->
+<section class="relative bg-white pt-12 sm:pt-16 pb-12 sm:pb-16 overflow-hidden">
     <div class="max-w-6xl mx-auto px-4 sm:px-8">
         
         <!-- Editorial Header -->
-        <div class="max-w-4xl space-y-4 mb-8 sm:mb-12 gsap-fade-up">
+        <div class="max-w-4xl space-y-4 mb-6 sm:mb-8 gsap-fade-up">
             <h2 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-slate-900 tracking-tight">
                 Quality Wire Harness Experts
             </h2>
@@ -25,16 +47,6 @@
             </p>
         </div>
 
-            </div>
-
-    <!-- Full-Bleed High-Bay Warehouse Facility Photograph (Edge-to-Edge matching Homepage Hero) -->
-    <div class="relative w-full h-[480px] sm:h-[580px] lg:h-[680px] overflow-hidden group select-none mt-8 sm:mt-12">
-        <img 
-            src="{{ asset('images/hd/about_warehouse.jpg') }}" 
-            alt="Seiko Denki High-Bay Automated Warehouse and FIFO Material Distribution Facility" 
-            class="w-full h-full object-cover object-center transform group-hover:scale-[1.02] transition-transform duration-700 ease-out will-change-transform warehouse-parallax-img"
-        >
-        <div class="absolute inset-0 bg-gradient-to-t from-slate-950/25 via-transparent to-slate-950/10 pointer-events-none"></div>
     </div>
 </section>
 
