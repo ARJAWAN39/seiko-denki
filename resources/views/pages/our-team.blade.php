@@ -27,14 +27,14 @@
             </p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            @foreach ($teamCategories as $idx => $member)
-            <div class="group bg-[#f8fafc] hover:bg-white rounded-3xl overflow-hidden border border-slate-200/80 hover:border-blue-300 shadow-sm hover:shadow-2xl transition-all duration-300 flex flex-col {{ $idx === 0 ? 'md:col-span-2 lg:col-span-3' : '' }} gsap-fade-up">
-                <div class="relative {{ $idx === 0 ? 'h-[260px] sm:h-[360px] lg:h-[420px]' : 'h-64' }} overflow-hidden bg-slate-900">
+        <div class="grid grid-cols-1 gap-8 mb-16">
+            @foreach ($teamCategories as $member)
+            <div class="group bg-[#f8fafc] hover:bg-white rounded-3xl overflow-hidden border border-slate-200/80 hover:border-blue-300 shadow-sm hover:shadow-2xl transition-all duration-300 flex flex-col gsap-fade-up">
+                <div class="relative h-[260px] sm:h-[360px] lg:h-[420px] overflow-hidden bg-slate-900">
                     <img 
                         src="{{ $member['image'] }}" 
                         alt="{{ $member['title'] }}" 
-                        class="w-full h-full object-cover {{ $idx === 0 ? 'object-[center_20%]' : 'object-center' }} group-hover:scale-105 transition-transform duration-700"
+                        class="w-full h-full object-cover object-[center_20%] group-hover:scale-105 transition-transform duration-700"
                     >
                     <span class="absolute top-4 left-4 px-3.5 py-1.5 rounded-full bg-[#1b54a5] text-white text-[11px] font-bold uppercase tracking-wider shadow-md">
                         {{ $member['tag'] }}
@@ -50,6 +50,33 @@
                 </div>
             </div>
             @endforeach
+        </div>
+
+        <!-- Staff Assembly & Team Gallery (12 Photos from seikodenki.com.my) -->
+        <div class="space-y-8">
+            <div class="flex items-center gap-3">
+                <h3 class="text-xl sm:text-2xl font-extrabold text-slate-900 tracking-tight">
+                    Staff Assembly <span class="text-[#1b54a5]">Gallery</span>
+                </h3>
+                <div class="flex-grow h-px bg-slate-200"></div>
+            </div>
+
+            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-5 sm:gap-6">
+                @foreach ($teamGallery as $photo)
+                <div class="group bg-[#f8fafc] rounded-2xl overflow-hidden border border-slate-200/80 hover:border-blue-300 shadow-sm hover:shadow-xl transition-all duration-300">
+                    <div class="relative h-48 sm:h-56 overflow-hidden bg-slate-100">
+                        <img 
+                            src="{{ $photo['image'] }}" 
+                            alt="{{ $photo['title'] }}" 
+                            class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
+                        >
+                        <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-[#1b54a5]/90 text-white text-[10px] font-bold uppercase tracking-wider">
+                            {{ $photo['tag'] }}
+                        </span>
+                    </div>
+                </div>
+                @endforeach
+            </div>
         </div>
 
     </div>

@@ -72,7 +72,7 @@ class PageController extends Controller
             ? $allProducts 
             : array_filter($allProducts, fn($p) => strtolower($p['category']) === strtolower($category));
 
-        $categories = ['All', 'Automotive', 'Medical', 'Semi-Con', 'Consumer', 'Security', 'Aerospace'];
+        $categories = ['All', 'Aircon Motor', 'Automotive', 'Consumer', 'Industrial Equipment', 'Medical', 'Security', 'Semi-Con'];
 
         return view('pages.products', compact('products', 'categories', 'category', 'allProducts'));
     }
@@ -273,7 +273,7 @@ class PageController extends Controller
     }
 
     /**
-     * Our Team Page (from seikodenki.com.my)
+     * Our Team Page (Mirrored from seikodenki.com.my/gallery/group/2800/cat/9250/)
      */
     public function ourTeam()
     {
@@ -284,33 +284,18 @@ class PageController extends Controller
                 'image' => asset('images/real/seiko_team_management.png'),
                 'tag' => 'Leadership',
             ],
-            [
-                'title' => 'Staff Assembly & Production Floor',
-                'subtitle' => 'Skilled wire harness technicians executing full-scale formboard routing, crimping, and point-to-point assembly.',
-                'image' => asset('images/real/seiko_formboard_assembly.jpg'),
-                'tag' => 'Staff Assembly',
-            ],
-            [
-                'title' => 'Cleanroom Inspection & Task Lighting',
-                'subtitle' => 'Dedicated visual quality assurance specialists performing 100% termination and connector integrity checks.',
-                'image' => asset('images/real/seiko_assembly_operator.png'),
-                'tag' => 'Quality Team',
-            ],
-            [
-                'title' => 'Optical Metrology & Testing Specialists',
-                'subtitle' => 'QA technicians operating PMX-150 digital optical measuring microscopes and continuity testing benches.',
-                'image' => asset('images/real/seiko_pmx150_optical.png'),
-                'tag' => 'Metrology Team',
-            ],
-            [
-                'title' => 'Automotive & Complex Harness Engineers',
-                'subtitle' => 'Technical specialists validating multi-branch automotive and industrial harness looms on test boards.',
-                'image' => asset('images/real/seiko_automotive_loom.jpg'),
-                'tag' => 'Engineering',
-            ],
         ];
 
-        return view('pages.our-team', compact('teamCategories'));
+        $teamGallery = [];
+        for ($i = 1; $i <= 12; $i++) {
+            $teamGallery[] = [
+                'title' => 'Seiko Denki Staff Assembly & Team Activity #' . $i,
+                'image' => asset("images/old_site/team/team_{$i}.jpg"),
+                'tag' => 'Staff Assembly',
+            ];
+        }
+
+        return view('pages.our-team', compact('teamCategories', 'teamGallery'));
     }
 
     /**
@@ -732,81 +717,160 @@ class PageController extends Controller
     }
 
     /**
-     * Events & News Dataset
+     * Events & News Dataset (Mirrored from seikodenki.com.my/latestnews/)
      */
     private function getNews(): array
     {
         return [
             [
                 'id' => 'news-1',
-                'title' => 'Seiko Denki (M) Sdn. Bhd. Honored as Outstanding SME at the Golden Bull Award',
-                'date' => 'Gala Awards',
-                'category' => 'Corporate Recognition',
-                'summary' => 'Seiko Denki (M) Sdn. Bhd. was proudly presented with the Golden Bull Award for Outstanding SME, recognizing over three decades of wire harness manufacturing excellence.',
-                'image' => asset('images/achievements/award_golden_bull_stage.jpg'),
+                'title' => 'Happy Deepavali!',
+                'date' => '06 Nov 2026',
+                'category' => 'Event',
+                'summary' => 'Wishing our employees, clients, and partners a joyful and prosperous Festival of Lights from Seiko Denki (M) Sdn. Bhd.',
+                'image' => asset('images/old_site/events/event_1.png'),
             ],
             [
                 'id' => 'news-2',
-                'title' => 'Leadership Team Attends #GBA Golden Bull Award Gala Ceremony',
-                'date' => 'Corporate Event',
-                'category' => 'Leadership & Gala',
-                'summary' => 'Our executive management and engineering leadership represented Seiko Denki at the prestigious Golden Bull Award business gala dinner.',
-                'image' => asset('images/achievements/event_gba_gala.jpg'),
+                'title' => 'Selamat Hari Raya Aidilfitri !',
+                'date' => '12 Mar 2026',
+                'category' => 'Event',
+                'summary' => 'Selamat Hari Raya Aidilfitri, Maaf Zahir dan Batin from the management and team at Seiko Denki (M) Sdn. Bhd.',
+                'image' => asset('images/old_site/events/event_2.png'),
             ],
             [
                 'id' => 'news-3',
-                'title' => 'ISO 14001:2015 Environmental Management Certification Renewed Through 2029',
-                'date' => '2026 – 2029',
-                'category' => 'Quality & ESG',
-                'summary' => 'AFNOR Certification officially validated Seiko Denki’s ISO 14001:2015 Environmental Management System across both our Senai 3 and Tebrau 1 plants.',
-                'image' => asset('images/achievements/cert_iso_14001.jpg'),
+                'title' => 'Merry Christmas!!',
+                'date' => '18 Dec 2025',
+                'category' => 'Event',
+                'summary' => 'Warmest season’s greetings and best wishes for the New Year to all our valued OEM partners and staff.',
+                'image' => asset('images/old_site/events/event_3.png'),
             ],
             [
                 'id' => 'news-4',
-                'title' => 'OEM Supplier Excellence: TOYO & Dynon Recognition Trophies',
-                'date' => 'Partner Milestone',
-                'category' => 'Client Recognition',
-                'summary' => 'Recognized by international OEM clients for consistent quality, on-time delivery, and high-reliability wire harness engineering.',
-                'image' => asset('images/achievements/award_crystal_trophies.jpg'),
-            ]
+                'title' => 'Happy Deepavali !',
+                'date' => '13 Oct 2025',
+                'category' => 'Event',
+                'summary' => 'Celebrating unity, harmony, and bright beginnings with our Seiko Denki family across Johor Bahru.',
+                'image' => asset('images/old_site/events/event_4.png'),
+            ],
+            [
+                'id' => 'news-5',
+                'title' => 'Happy Independence Day!',
+                'date' => '27 Aug 2025',
+                'category' => 'Event',
+                'summary' => 'Selamat Hari Merdeka! Proudly manufacturing precision wire harnesses in Johor, Malaysia since 1991.',
+                'image' => asset('images/old_site/events/event_5.png'),
+            ],
+            [
+                'id' => 'news-6',
+                'title' => 'Happy Labour Day',
+                'date' => '30 Apr 2025',
+                'category' => 'Event',
+                'summary' => 'Appreciating the dedication, craftsmanship, and teamwork of every Seiko Denki employee.',
+                'image' => asset('images/old_site/events/event_6.png'),
+            ],
         ];
     }
 
     /**
-     * Products Dataset
+     * Products Dataset (Mirrored from seikodenki.com.my/category/)
      */
     private function getProducts(): array
     {
         return [
             [
-                'id' => 'prod-auto',
-                'code' => 'SEIKO-AUT-01',
-                'name' => 'Automotive Engine & Chassis Wire Harness',
-                'category' => 'Automotive',
-                'description' => 'Custom engineered wiring looms for ICE vehicles, commercial transport, and EV battery management interconnects with automotive sealed housings.',
-                'wireGauge' => '12 – 28 AWG (XLPE / Cross-linked)',
-                'standard' => 'IPC/WHMA Class 3',
-                'standardColor' => 'bg-red-50 text-red-700 border-red-200/80',
-                'connectors' => ['Yazaki', 'TE Connectivity', 'Aptiv', 'Deutsch IP68'],
-                'tolerances' => '±1.0mm Length / CFM Real-Time Monitored',
-                'testing' => '100% Electrical Continuity & High-Voltage Dielectric Testing',
+                'id' => 'prod-aircon',
+                'code' => 'SEIKO-AIR-01',
+                'name' => 'Aircon Motor Wire Harness',
+                'category' => 'Aircon Motor',
+                'description' => 'Precision motor lead wire harnesses engineered for HVAC blowers, inverter air-conditioning compressors, and thermal control units.',
+                'wireGauge' => '16 – 24 AWG (UL1015 / UL3266)',
+                'standard' => 'UL Recognized / RoHS 3',
+                'standardColor' => 'bg-cyan-50 text-cyan-700 border-cyan-200/80',
+                'connectors' => ['JST VH/XH', 'Molex', 'TE Faston', 'Waterproof Seal'],
+                'tolerances' => '±1.0mm Length / Automated CFM Monitored',
+                'testing' => '100% Continuity & High-Voltage Insulation Testing',
                 'specs' => [
-                    'Heat resistant cross-linked polyethylene (XLPE) jacket',
+                    'High-temperature resistant PVC & XLPE motor lead insulation',
+                    'Vibration-resistant crimped ring & flag terminals',
+                    'Custom heat-shrink strain relief sleeving',
+                    'RoHS 3 & REACH compliant materials'
+                ],
+                'application' => 'Air conditioner fan motors, HVAC blower modules, inverter compressors.',
+                'image' => asset('images/old_site/products/prod_aircon.png'),
+            ],
+            [
+                'id' => 'prod-auto',
+                'code' => 'SEIKO-AUT-02',
+                'name' => 'Automotive Wire Harness',
+                'category' => 'Automotive',
+                'description' => 'Custom engineered car wire harnesses and commercial bus cables built to strict IATF 16949 automotive quality standards.',
+                'wireGauge' => '12 – 28 AWG (AVSS / XLPE)',
+                'standard' => 'IATF 16949:2016',
+                'standardColor' => 'bg-red-50 text-red-700 border-red-200/80',
+                'connectors' => ['Yazaki', 'Sumitomo', 'TE Connectivity', 'Deutsch IP68'],
+                'tolerances' => '±1.0mm Length / CFM Real-Time Monitored',
+                'testing' => '100% Electrical Continuity & Pull-Force Verified',
+                'specs' => [
+                    'Car wire harness & commercial bus cable sub-assemblies',
+                    'Heat-resistant cross-linked polyethylene (XLPE) jacket',
                     'IP67/IP68 sealed waterproof connector interfaces',
-                    'Flame retardant corrugated loom protective conduit',
                     'Computerized digital continuity & crimp force analysis'
                 ],
-                'application' => 'Commercial buses, automotive engine compartments, sensor clusters, EV BMS.',
-                'image' => asset('images/hd/prod_automotive.jpg'),
+                'application' => 'Passenger car systems, commercial buses, chassis & sensor clusters.',
+                'image' => asset('images/old_site/products/prod_automotive.jpg'),
+            ],
+            [
+                'id' => 'prod-consumer',
+                'code' => 'SEIKO-CON-03',
+                'name' => 'Consumer Wire Harness',
+                'category' => 'Consumer',
+                'description' => 'High-yield wiring interconnects built for global consumer electronics, home appliances, audio/video, and communication devices (10+ configurations).',
+                'wireGauge' => '18 – 28 AWG (UL1007 / UL1015 / UL1569)',
+                'standard' => 'UL Recognized / RoHS 3',
+                'standardColor' => 'bg-amber-50 text-amber-700 border-amber-200/80',
+                'connectors' => ['JST VH/XH/RE', 'Molex Mini-Fit', 'TE Connectivity', 'Faston'],
+                'tolerances' => 'Automated High-Speed Stripping & Cut Lengths',
+                'testing' => '100% automated continuity & miswire prevention testing',
+                'specs' => [
+                    'UL style approved hook-up wires with color-coded tracing',
+                    'Automated high-speed crimping with integrated CFM quality checks',
+                    'IDC mass termination and discrete custom connector housings',
+                    '100% RoHS 3, REACH, and Halogen-Free compliance'
+                ],
+                'application' => 'Home appliances, audio & video systems, printers, smart kitchen products.',
+                'image' => asset('images/old_site/products/prod_consumer.png'),
+            ],
+            [
+                'id' => 'prod-industrial',
+                'code' => 'SEIKO-IND-04',
+                'name' => 'Industrial Equipment Wire Harness',
+                'category' => 'Industrial Equipment',
+                'description' => 'Heavy-duty power, control panel, and machinery interconnect looms engineered for industrial automation and weighing equipment (9+ configurations).',
+                'wireGauge' => '10 – 24 AWG (UL1015 / Shielded Control)',
+                'standard' => 'ISO 9001:2015 / UL',
+                'standardColor' => 'bg-blue-50 text-[#1b54a5] border-blue-200/80',
+                'connectors' => ['Harting', 'Amphenol', 'Phoenix Contact', 'Molex'],
+                'tolerances' => 'Precision Lacing & Braided Sleeving',
+                'testing' => '100% Continuity, Hi-Pot & Pull-Force Verified',
+                'specs' => [
+                    'Oil, abrasion, and heat resistant industrial jacketing',
+                    'Heavy-gauge lug & ferrule terminations',
+                    'EMI/RFI braided shielding for PLC and motor drives',
+                    'Custom point-to-point control cabinet routing'
+                ],
+                'application' => 'Industrial automation machinery, power supplies, weighing machines.',
+                'image' => asset('images/old_site/products/prod_industrial.png'),
             ],
             [
                 'id' => 'prod-med',
-                'code' => 'SEIKO-MED-02',
-                'name' => 'Precision Medical Device Cable Assembly',
+                'code' => 'SEIKO-MED-05',
+                'name' => 'Medical and Healthcare Wire Harness',
                 'category' => 'Medical',
-                'description' => 'Bio-compatible, low-noise shielded cable assemblies manufactured in cleanroom conditions complying strictly with ISO 13485 standards.',
+                'description' => 'Low-noise shielded cable assemblies manufactured under strict ISO 13485:2016 standards for medical systems and measuring instruments (13+ configurations).',
                 'wireGauge' => '24 – 36 AWG (Micro-Coax / Silicone)',
-                'standard' => 'ISO 13485 Compliant',
+                'standard' => 'ISO 13485:2016',
                 'standardColor' => 'bg-sky-50 text-sky-700 border-sky-200/80',
                 'connectors' => ['Lemo Push-Pull', 'Molex Micro-Fit', 'Hypertronics', 'Fischer'],
                 'tolerances' => 'Sub-Millimeter Micro-Crimp / Zero Flux Residue',
@@ -815,59 +879,17 @@ class PageController extends Controller
                     'Medical-grade biocompatible silicone & TPU outer jackets',
                     '100% dual-layer copper braided shield against EMI/RFI noise',
                     'Steam autoclave and chemical wipe sterilizable construction',
-                    'Ultra-flexible high-strand micro-conductor conductors'
+                    'Ultra-flexible high-strand micro-conductor routing'
                 ],
-                'application' => 'Patient monitoring systems, defibrillators, surgical ultrasound probes, endoscopy.',
-                'image' => asset('images/hd/prod_medical.jpg'),
-            ],
-            [
-                'id' => 'prod-semi',
-                'code' => 'SEIKO-SEM-03',
-                'name' => 'Semiconductor Box Build & Equipment Loom',
-                'category' => 'Semi-Con',
-                'description' => 'High-density signal and multi-channel power routing assemblies built to withstand cleanroom environments and continuous robotic motion.',
-                'wireGauge' => '16 – 32 AWG (Continuous-Flex)',
-                'standard' => 'Cleanroom Class 100',
-                'standardColor' => 'bg-indigo-50 text-indigo-700 border-indigo-200/80',
-                'connectors' => ['JST PH/XH', 'Hirose DF13', 'High-Density D-Sub', 'Molex'],
-                'tolerances' => 'Precision Pin-by-Pin Alignment / Point-to-Point Testing',
-                'testing' => 'Cirris digital fixture testing up to 1,024 test points',
-                'specs' => [
-                    'High-flex drag chain cable rated up to 10M continuous bend cycles',
-                    'Low-outgassing zero-halogen jacket materials',
-                    'Custom point-to-point pinout branching terminal housings',
-                    'Solid tin-plated braided grounding and shielding harnesses'
-                ],
-                'application' => 'Wafer handling robotics, SMT chip placers, cleanroom lithography modules.',
-                'image' => asset('images/hd/prod_semicon.jpg'),
-            ],
-            [
-                'id' => 'prod-consumer',
-                'code' => 'SEIKO-CON-04',
-                'name' => 'Audio/Video & Home Appliance Harnesses',
-                'category' => 'Consumer',
-                'description' => 'Cost-optimized, high-yield wiring interconnects built for international consumer electronics, smart kitchen automation, and audio/video brands.',
-                'wireGauge' => '18 – 28 AWG (UL1007 / UL1015 / UL1569)',
-                'standard' => 'UL Recognized / RoHS 3',
-                'standardColor' => 'bg-amber-50 text-amber-700 border-amber-200/80',
-                'connectors' => ['JST VH/XH/RE', 'Molex Mini-Fit', 'TE Connectivity', 'Faston'],
-                'tolerances' => 'Automated High-Speed Stripping & Precision Cut Lengths',
-                'testing' => '100% automated continuity & miswire prevention testing',
-                'specs' => [
-                    'UL style approved hook-up wires with color-coded tracing',
-                    'Automated high-speed crimping with integrated CFM quality checks',
-                    'IDC mass termination and discrete custom connector housings',
-                    '100% RoHS 3, REACH, and Halogen-Free compliance'
-                ],
-                'application' => 'Premium home appliances, kitchen robotics, acoustic systems, consumer smart devices.',
-                'image' => asset('images/hd/prod_consumer.jpg'),
+                'application' => 'Patient monitoring systems, healthcare equipment, measuring instruments.',
+                'image' => asset('images/old_site/products/prod_medical.png'),
             ],
             [
                 'id' => 'prod-security',
-                'code' => 'SEIKO-SEC-05',
-                'name' => 'High-Voltage Scanner & Surveillance Harness',
+                'code' => 'SEIKO-SEC-06',
+                'name' => 'Security Product Wire Harness',
                 'category' => 'Security',
-                'description' => 'Ruggedized power and high-speed data transmission harnesses designed for critical infrastructure security checkpoints and surveillance scanners.',
+                'description' => 'Ruggedized power and high-speed data transmission harnesses for luggage scanners, body scanners, and critical security systems (6+ configurations).',
                 'wireGauge' => '8 – 20 AWG (High-Dielectric Insulation)',
                 'standard' => 'IP67 / UL 94V-0 Rated',
                 'standardColor' => 'bg-teal-50 text-teal-700 border-teal-200/80',
@@ -880,30 +902,30 @@ class PageController extends Controller
                     'Oil, ozone, moisture, and abrasion resistant outer polyurethane',
                     'Positive locking metal bayonet connector assemblies'
                 ],
-                'application' => 'Airport baggage X-ray scanners, perimeter security turnstiles, high-speed CCTV arrays.',
-                'image' => asset('images/hd/prod_security.jpg'),
+                'application' => 'Airport luggage X-ray scanners, body scanners, security turnstiles.',
+                'image' => asset('images/old_site/products/prod_security.png'),
             ],
             [
-                'id' => 'prod-aerospace',
-                'code' => 'SEIKO-AER-06',
-                'name' => 'Aerospace & Mil-Spec Spec Cable Assembly',
-                'category' => 'Aerospace',
-                'description' => 'Extreme temperature and lightweight shielded assemblies conforming to rigorous aerospace reliability specifications and environmental stress tests.',
-                'wireGauge' => '16 – 30 AWG (M22759 / Tefzel ETFE)',
-                'standard' => 'MIL-STD-202 / AS9100 Practices',
-                'standardColor' => 'bg-purple-50 text-purple-700 border-purple-200/80',
-                'connectors' => ['Amphenol D38999 Series III', 'Glenair Micro-D', 'BNC Coaxial'],
-                'tolerances' => 'Precision Laced Harnessing / Laser Wire Identification',
-                'testing' => 'Thermal cycling (-65°C to +200°C) & high-altitude insulation testing',
+                'id' => 'prod-semi',
+                'code' => 'SEIKO-SEM-07',
+                'name' => 'Semi conductor Products',
+                'category' => 'Semi-Con',
+                'description' => 'High-density signal and multi-channel power routing assemblies for SMT machines, wafer systems, box builds, and front-end modules (14+ configurations).',
+                'wireGauge' => '16 – 32 AWG (Continuous-Flex)',
+                'standard' => 'Cleanroom Class 100',
+                'standardColor' => 'bg-indigo-50 text-indigo-700 border-indigo-200/80',
+                'connectors' => ['JST PH/XH', 'Hirose DF13', 'High-Density D-Sub', 'Molex'],
+                'tolerances' => 'Precision Pin-by-Pin Alignment / Point-to-Point Testing',
+                'testing' => 'Cirris digital fixture testing up to 1,024 test points',
                 'specs' => [
-                    'Tefzel / ETFE high-temp insulation (-65°C to +200°C operational)',
-                    'Silver-plated copper high-conductivity lightweight conductors',
-                    'Non-outgassing Nomex / Kevlar braided outer mechanical protection',
-                    'Laser wire marking and mil-spec crimp pull-force certification'
+                    'High-flex drag chain cable rated up to 10M continuous bend cycles',
+                    'Low-outgassing zero-halogen jacket materials',
+                    'Custom point-to-point pinout branching terminal housings',
+                    'Turn-key box build wiring & front-end module assemblies'
                 ],
-                'application' => 'Avionics instrument panels, aircraft cabin power management, radar antenna interconnects.',
-                'image' => asset('images/hd/prod_aerospace.jpg'),
-            ]
+                'application' => 'Wafer handling robotics, SMT chip placers, box builds, front-end modules.',
+                'image' => asset('images/old_site/products/prod_semicon.png'),
+            ],
         ];
     }
 }

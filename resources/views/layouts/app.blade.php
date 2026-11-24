@@ -574,7 +574,7 @@
                         <a href="{{ route('team') }}" @click="megaMenuOpen = false" class="block text-white/70 hover:text-white hover:translate-x-2 transition-all duration-200 ease-out">Our Team</a>
                     </div>
 
-                    <!-- State B: Default Items (Our Product, Achievement, News & Events) -->
+                    <!-- State B: Default Items (Career, Achievement, News & Events) -->
                     <div 
                         x-show="activeMenuTab !== 'about'" 
                         x-transition:enter="transition-all ease-out duration-300"
@@ -585,28 +585,28 @@
                         x-transition:leave-end="opacity-0 translate-x-3"
                         class="space-y-8 sm:space-y-10"
                     >
-                        <!-- Our Product -->
+                        <!-- Career -->
                         <div 
-                            @mouseenter="activeCol2Tab = 'products'" 
+                            @mouseenter="activeCol2Tab = 'career'" 
                             @mouseleave="activeCol2Tab = null"
                             class="group cursor-pointer select-none"
                         >
                             <a 
-                                href="{{ route('products') }}" 
+                                href="{{ route('career') }}" 
                                 @click="megaMenuOpen = false"
                                 class="text-xl sm:text-2xl tracking-tight block pb-3.5 sm:pb-4 transition-all duration-300 ease-out"
-                                :class="activeCol2Tab === 'products' ? 'text-white font-bold drop-shadow' : 'text-white/60 font-medium group-hover:text-white'"
+                                :class="activeCol2Tab === 'career' ? 'text-white font-bold drop-shadow' : 'text-white/60 font-medium group-hover:text-white'"
                             >
-                                Our Product
+                                Career
                             </a>
                             <div class="flex items-center w-full max-w-[280px] sm:max-w-[320px]">
                                 <div 
                                     class="flex-1 h-[1.5px] transition-all duration-300 ease-out"
-                                    :class="activeCol2Tab === 'products' ? 'bg-white' : 'bg-white/20 group-hover:bg-white'"
+                                    :class="activeCol2Tab === 'career' ? 'bg-white' : 'bg-white/20 group-hover:bg-white'"
                                 ></div>
                                 <svg 
                                     class="w-10 h-2.5 transition-all duration-300 ease-out flex-shrink-0"
-                                    :class="activeCol2Tab === 'products' ? 'text-white stroke-white' : 'text-white/30 stroke-white/30 group-hover:text-white group-hover:stroke-white'"
+                                    :class="activeCol2Tab === 'career' ? 'text-white stroke-white' : 'text-white/30 stroke-white/30 group-hover:text-white group-hover:stroke-white'"
                                     viewBox="0 0 40 10" 
                                     fill="none"
                                 >
@@ -614,7 +614,7 @@
                                 </svg>
                                 <div 
                                     class="w-8 sm:w-12 h-[1.5px] transition-all duration-300 ease-out flex-shrink-0"
-                                    :class="activeCol2Tab === 'products' ? 'bg-white' : 'bg-white/20 group-hover:bg-white'"
+                                    :class="activeCol2Tab === 'career' ? 'bg-white' : 'bg-white/20 group-hover:bg-white'"
                                 ></div>
                             </div>
                         </div>
@@ -695,7 +695,6 @@
                 <div class="lg:col-span-3 space-y-4 lg:pl-6 select-none">
                     <h4 class="text-base sm:text-lg font-bold text-white tracking-tight mb-4">Others</h4>
                     <div class="space-y-3.5 text-sm sm:text-base text-white/70 font-medium">
-                        <a href="{{ route('career') }}" @click="megaMenuOpen = false" class="block hover:text-white hover:translate-x-1.5 transition-all duration-200 ease-out">Career</a>
                         <a href="{{ route('contact') }}#faq" @click="megaMenuOpen = false" class="block hover:text-white hover:translate-x-1.5 transition-all duration-200 ease-out">FAQs</a>
                         <a href="{{ route('contact') }}" @click="megaMenuOpen = false" class="block hover:text-white hover:translate-x-1.5 transition-all duration-200 ease-out">Contact Us</a>
                         <a href="{{ route('analytics') }}" @click="megaMenuOpen = false" class="block hover:text-white transition-colors text-xs text-sky-200 pt-2">Executive Traffic Report</a>
