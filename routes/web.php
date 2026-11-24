@@ -17,7 +17,7 @@ Route::get('/achievements', [PageController::class, 'achievements'])->name('achi
 Route::get('/news-events', [PageController::class, 'news'])->name('news');
 Route::get('/news', fn() => redirect('/news-events'));
 Route::get('/facilities', [PageController::class, 'facilities'])->name('facilities');
-Route::get('/career', [PageController::class, 'career'])->name('career');
+Route::get('/career/{id?}', [PageController::class, 'career'])->name('career');
 Route::get('/contact-us', [PageController::class, 'contact'])->name('contact');
 Route::get('/contact', fn() => redirect('/contact-us'));
 
