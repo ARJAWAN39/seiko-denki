@@ -63,13 +63,13 @@
                     
                     <!-- Image Preview with Hover Zoom overlay -->
                     <div 
-                        class="relative h-60 bg-slate-100 overflow-hidden cursor-pointer"
+                        class="relative h-64 {{ $item['type'] === 'certificate' ? 'bg-slate-50 p-2' : 'bg-slate-100' }} overflow-hidden cursor-pointer"
                         @click="activeModalItem = {{ json_encode($item) }}"
                     >
                         <img
                             src="{{ $item['image'] }}"
                             alt="{{ $item['title'] }}"
-                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out will-change-transform"
+                            class="w-full h-full {{ $item['type'] === 'certificate' ? 'object-contain' : 'object-cover' }} group-hover:scale-105 transition-transform duration-700 ease-out will-change-transform"
                         >
                         <div class="absolute inset-0 bg-slate-950/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-2">
                             <span class="px-4 py-2 rounded-xl bg-white/95 backdrop-blur-md text-[#1b54a5] text-xs font-bold flex items-center gap-1.5 shadow-xl">
@@ -159,8 +159,8 @@
             @click.outside="activeModalItem = null"
             class="bg-white rounded-3xl max-w-2xl w-full overflow-hidden shadow-2xl border border-slate-200 relative"
         >
-            <div class="relative h-72 sm:h-80 bg-slate-900">
-                <img :src="activeModalItem?.image" :alt="activeModalItem?.title" class="w-full h-full object-cover">
+            <div class="relative h-80 sm:h-[420px] bg-slate-900 flex items-center justify-center p-2">
+                <img :src="activeModalItem?.image" :alt="activeModalItem?.title" class="w-full h-full object-contain">
                 <button 
                     @click="activeModalItem = null"
                     class="absolute top-4 right-4 w-9 h-9 rounded-full bg-slate-900/80 backdrop-blur-md text-white hover:bg-slate-900 flex items-center justify-center text-sm font-bold transition-colors"
