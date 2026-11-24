@@ -1,14 +1,14 @@
 @extends('layouts.app')
 
-@section('title', 'Capabilities & Solutions | Seiko Denki (M) Sdn. Bhd. - Wire Harness Specialist')
+@section('title', 'Our Product | Seiko Denki (M) Sdn. Bhd. - Wire Harness Specialist')
 
 @section('content')
 
 <!-- 1. Hero Section: Full-Width Ambient Grade with Floating Royal Blue Badge -->
 <x-page-hero 
-    title="Capabilities & Solutions"
+    title="Our Product"
     image="{{ asset('images/hd/hero_products.jpg') }}"
-    badgeWord1="Capabilities"
+    badgeWord1="Our Product"
     badgeWord2="Seiko Denki"
 />
 

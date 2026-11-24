@@ -1,14 +1,14 @@
 @extends('layouts.app')
 
-@section('title', 'Achievements (Certificates & Awards) | Seiko Denki (M) Sdn. Bhd. - Japanese Wire Harness Precision')
+@section('title', 'Achievement | Seiko Denki (M) Sdn. Bhd. - Certificates & Awards')
 
 @section('content')
 
 <!-- 1. Hero Section: Full-Width Ambient Grade with Floating Royal Blue Badge -->
 <x-page-hero 
-    title="Certifications &amp; Accreditations"
+    title="Achievement"
     image="{{ asset('images/hd/hero_achievements.jpg') }}"
-    badgeWord1="Compliance &amp; ESG"
+    badgeWord1="Achievement"
     badgeWord2="Seiko Denki"
 />
 
