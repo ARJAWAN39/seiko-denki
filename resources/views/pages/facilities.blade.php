@@ -1,96 +1,164 @@
 @extends('layouts.app')
 
-@section('title', 'Facilities & Plant Tour | Seiko Denki (M) Sdn. Bhd. - Japanese Wire Harness Precision')
+@section('title', 'Facilities | Seiko Denki (M) Sdn. Bhd. - Photo Gallery, Videos & Downloads')
 
 @section('content')
 
-<!-- 1. Hero Section: Full-Width Ambient Grade with Floating Royal Blue Badge -->
+<!-- 1. Hero Section -->
 <x-page-hero 
-    title="Manufacturing Facilities &amp; Technology"
-    image="{{ asset('images/hd/hero_facilities.jpg') }}"
+    title="Manufacturing Facilities"
+    image="{{ asset('images/real/seiko_pmx150_optical.png') }}"
     badgeWord1="Facilities"
     badgeWord2="Seiko Denki"
 />
 
-<!-- 2. Main Facilities Section -->
-<div class="py-16 sm:py-24 bg-white min-h-screen select-none">
+<!-- 2. Main Facilities Section (Matched to Old Website: Photo Gallery, Company Videos, Download) -->
+<div class="py-16 sm:py-24 bg-white min-h-screen select-none" x-data="{ activeTab: 'gallery' }">
     <div class="max-w-7xl mx-auto px-4 sm:px-8 space-y-16">
         
-        <!-- Header -->
-        <div class="text-center max-w-3xl mx-auto space-y-4 gsap-fade-up">
+        <!-- Header & Section Switcher -->
+        <div class="text-center max-w-3xl mx-auto space-y-6 gsap-fade-up">
             <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-50 border border-blue-200/60 text-[#1b54a5] text-xs font-bold uppercase tracking-wider">
                 <i data-lucide="factory" class="w-3.5 h-3.5 text-[#1b54a5]"></i>
-                <span>Manufacturing Infrastructure</span>
+                <span>Tebrau 1 &amp; Senai Fasa 3 Plants</span>
             </div>
             <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight">
-                Facilities &amp; Plant Technology
+                Plant <span class="text-[#1b54a5]">Facilities</span>
             </h2>
             <p class="text-slate-600 text-sm sm:text-base max-w-2xl mx-auto leading-relaxed font-normal">
-                Take a virtual tour through Seiko Denki's Johor Bahru manufacturing facility. Engineered for precision, traceability, and high-volume scalability.
+                Explore our manufacturing photo albums, corporate factory tour videos, and official quality certification downloads.
             </p>
+
+            <!-- 3 Old-Website Category Tabs -->
+            <div class="flex flex-wrap items-center justify-center gap-3 pt-2">
+                <button
+                    type="button"
+                    @click="activeTab = 'gallery'"
+                    :class="activeTab === 'gallery' ? 'bg-[#1b54a5] text-white shadow-md' : 'bg-slate-100 text-slate-600 hover:bg-slate-200'"
+                    class="px-6 py-2.5 rounded-full text-xs sm:text-sm font-bold transition-all cursor-pointer inline-flex items-center gap-2"
+                >
+                    <i data-lucide="images" class="w-4 h-4"></i>
+                    <span>Photo Gallery</span>
+                </button>
+                <button
+                    type="button"
+                    @click="activeTab = 'videos'"
+                    :class="activeTab === 'videos' ? 'bg-[#1b54a5] text-white shadow-md' : 'bg-slate-100 text-slate-600 hover:bg-slate-200'"
+                    class="px-6 py-2.5 rounded-full text-xs sm:text-sm font-bold transition-all cursor-pointer inline-flex items-center gap-2"
+                >
+                    <i data-lucide="video" class="w-4 h-4"></i>
+                    <span>Company Videos</span>
+                </button>
+                <button
+                    type="button"
+                    @click="activeTab = 'download'"
+                    :class="activeTab === 'download' ? 'bg-[#1b54a5] text-white shadow-md' : 'bg-slate-100 text-slate-600 hover:bg-slate-200'"
+                    class="px-6 py-2.5 rounded-full text-xs sm:text-sm font-bold transition-all cursor-pointer inline-flex items-center gap-2"
+                >
+                    <i data-lucide="download" class="w-4 h-4"></i>
+                    <span>Download</span>
+                </button>
+            </div>
         </div>
 
-        <!-- Facility Highlights Grid (2 Columns) -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10 gsap-fade-up">
-            @foreach($facilities as $idx => $facility)
-                <div class="bg-white rounded-3xl overflow-hidden border border-slate-200/90 shadow-sm hover:shadow-2xl hover:-translate-y-1.5 transition-all duration-300 flex flex-col group">
-                    <div class="relative h-64 sm:h-72 overflow-hidden bg-slate-100">
+        <!-- TAB 1: Photo Gallery (7 Albums from Old Website) -->
+        <div id="photo-gallery" x-show="activeTab === 'gallery'" class="space-y-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                @foreach($photoAlbums as $album)
+                <div class="bg-[#f8fafc] hover:bg-white rounded-3xl overflow-hidden border border-slate-200/90 shadow-sm hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 flex flex-col group">
+                    <div class="relative h-60 overflow-hidden bg-slate-100">
                         <img
-                            src="{{ $facility['image'] }}"
-                            alt="{{ $facility['title'] }}"
-                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out will-change-transform"
+                            src="{{ $album['image'] }}"
+                            alt="{{ $album['title'] }}"
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                         >
-                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950/40 via-transparent to-transparent pointer-events-none"></div>
-                        <div class="absolute top-4 left-4">
-                            <span class="px-3.5 py-1.5 rounded-xl bg-[#1b54a5]/90 backdrop-blur-md text-white text-xs font-bold uppercase tracking-wider shadow-sm">
-                                {{ $facility['tag'] }}
-                            </span>
-                        </div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950/50 via-transparent to-transparent pointer-events-none"></div>
+                        <span class="absolute top-4 right-4 px-3 py-1 rounded-full bg-white/95 text-[#1b54a5] text-xs font-extrabold shadow-sm">
+                            {{ $album['count'] }} {{ $album['count'] === 1 ? 'Photo' : 'Photos' }}
+                        </span>
                     </div>
 
-                    <div class="p-6 sm:p-8 space-y-4 flex-1 flex flex-col justify-between">
+                    <div class="p-6 sm:p-7 space-y-2.5 flex-1 flex flex-col justify-between">
                         <div>
-                            <h3 class="text-xl sm:text-2xl font-bold text-slate-900 group-hover:text-[#1b54a5] transition-colors leading-snug">
-                                {{ $facility['title'] }}
+                            <h3 class="text-lg sm:text-xl font-extrabold text-slate-900 group-hover:text-[#1b54a5] transition-colors leading-snug">
+                                {{ $album['title'] }}
                             </h3>
-                            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed mt-2.5 font-normal">
-                                {{ $facility['desc'] }}
+                            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed mt-2 font-normal">
+                                {{ $album['desc'] }}
                             </p>
-                        </div>
-
-                        <div class="pt-4 border-t border-slate-100 flex items-center justify-between text-xs text-slate-400">
-                            <span class="flex items-center gap-1.5 text-emerald-600 font-bold">
-                                <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-500"></i>
-                                <span>Audited &amp; Certified Process</span>
-                            </span>
-                            <span class="font-mono text-slate-400 font-bold bg-slate-50 px-2.5 py-1 rounded-lg border border-slate-200/60">Station 0{{ $idx + 1 }}</span>
                         </div>
                     </div>
                 </div>
-            @endforeach
+                @endforeach
+            </div>
         </div>
 
-        <!-- Corporate Video Tour Banner -->
-        <div class="rounded-3xl bg-[#1b54a5] text-white p-8 sm:p-12 shadow-2xl flex flex-col md:flex-row items-center justify-between gap-8 gsap-fade-up">
-            <div class="space-y-2 text-center md:text-left">
-                <span class="text-xs uppercase font-extrabold tracking-widest text-sky-300">
-                    Interactive Multimedia Presentation
-                </span>
-                <h3 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
-                    Watch Seiko Denki Factory Production Tour Video
-                </h3>
-                <p class="text-white/85 text-xs sm:text-sm max-w-xl leading-relaxed">
-                    Experience our automated high-speed wire crimping, harness loom taping, and zero-defect quality inspection process in action.
-                </p>
+        <!-- TAB 2: Company Videos -->
+        <div id="company-videos" x-show="activeTab === 'videos'" x-cloak class="space-y-8">
+            <div class="grid grid-cols-1 gap-8 max-w-4xl mx-auto">
+                @foreach($videos as $video)
+                <div class="bg-[#f8fafc] rounded-3xl overflow-hidden border border-slate-200/90 shadow-lg">
+                    <div class="aspect-video w-full bg-slate-950">
+                        <iframe 
+                            class="w-full h-full"
+                            src="https://www.youtube.com/embed/{{ $video['youtubeId'] }}" 
+                            title="{{ $video['title'] }}" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen
+                        ></iframe>
+                    </div>
+                    <div class="p-6 sm:p-8 space-y-3">
+                        <div class="flex flex-wrap items-center justify-between gap-2">
+                            <span class="px-3 py-1 rounded-full bg-blue-50 text-[#1b54a5] text-xs font-bold uppercase tracking-wider">
+                                {{ $video['category'] }}
+                            </span>
+                            <a href="{{ $video['url'] }}" target="_blank" rel="noopener" class="text-xs font-bold text-[#1b54a5] hover:underline inline-flex items-center gap-1.5">
+                                <span>Watch on YouTube</span>
+                                <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+                            </a>
+                        </div>
+                        <h3 class="text-xl sm:text-2xl font-extrabold text-slate-900">
+                            {{ $video['title'] }}
+                        </h3>
+                        <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                            {{ $video['desc'] }}
+                        </p>
+                    </div>
+                </div>
+                @endforeach
             </div>
+        </div>
 
-            <x-waveform-button 
-                href="https://www.youtube.com" 
-                text="Launch Video Presentation" 
-                theme="dark" 
-                target="_blank"
-                class="flex-shrink-0"
-            />
+        <!-- TAB 3: Download -->
+        <div id="download" x-show="activeTab === 'download'" x-cloak class="space-y-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+                @foreach($downloads as $doc)
+                <div class="bg-[#f8fafc] hover:bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/90 hover:border-blue-300 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between gap-6">
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between gap-3">
+                            <div class="w-11 h-11 rounded-2xl bg-blue-50 text-[#1b54a5] flex items-center justify-center">
+                                <i data-lucide="file-text" class="w-5 h-5"></i>
+                            </div>
+                            <span class="px-3 py-1 rounded-full bg-slate-100 text-slate-600 text-[11px] font-bold uppercase tracking-wider">
+                                {{ $doc['format'] }}
+                            </span>
+                        </div>
+                        <h3 class="text-lg sm:text-xl font-extrabold text-slate-900">
+                            {{ $doc['title'] }}
+                        </h3>
+                        <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                            {{ $doc['desc'] }}
+                        </p>
+                    </div>
+
+                    <a href="{{ $doc['url'] }}" class="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-full bg-[#1b54a5] hover:bg-[#134074] text-white text-xs font-bold shadow-sm transition-all">
+                        <i data-lucide="download" class="w-4 h-4"></i>
+                        <span>View / Download Document</span>
+                    </a>
+                </div>
+                @endforeach
+            </div>
         </div>
 
     </div>

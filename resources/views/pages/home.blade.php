@@ -607,9 +607,6 @@
     </div>
 </section>
 
-<!-- 4. Industries We Serve (Former 6 Business Scopes, updated to Figma layout) -->
-@include('components.business-scopes')
-
 <!-- 5. Respective Clients (Approved Tier-1 Vendor for Global Industry Leaders) -->
 @include('components.respective-clients')
 

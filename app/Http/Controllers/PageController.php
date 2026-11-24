@@ -102,38 +102,394 @@ class PageController extends Controller
     }
 
     /**
-     * Facilities Tour Page
+     * Milestone Page (from seikodenki.com.my)
+     */
+    public function milestones()
+    {
+        $milestones = [
+            [
+                'year' => '2016',
+                'title' => 'Semi-Con Turn-Key & Best Supplier Awards',
+                'highlights' => [
+                    'Start On Semi-Con Box Build Project Turn-Key',
+                    'Awarded as BEST SUPPLIER (Harness Category) & Overall Best Supplier',
+                    'Appointed as AVL for Air Con Motor Products',
+                ],
+                'badge' => 'Award & Semi-Con',
+            ],
+            [
+                'year' => '2014 – 2015',
+                'title' => 'Plastic Injection Moulding & Automotive Harnesses',
+                'highlights' => [
+                    'Start Plastic Injection Moulding',
+                    'Start Assembly For Bus & Car Harness',
+                    'Awarded as BEST SUPPLIER (Harness Category) — 2014',
+                    'Appointed as AVL for Consumer Products from UK',
+                ],
+                'badge' => 'Automotive & Moulding',
+            ],
+            [
+                'year' => '2013',
+                'title' => 'ISO 14001 & ISO/TS 16949 Certifications',
+                'highlights' => [
+                    'Certified ISO 14001: 2004 Environmental Management in April',
+                    'Certified ISO/TS 16949: 2009 Automotive Quality Management in August',
+                ],
+                'badge' => 'Quality & Environment',
+            ],
+            [
+                'year' => '2012',
+                'title' => 'Senai Manufacturing Plant Expansion',
+                'highlights' => [
+                    'Expanded Senai Plant in January with 33,000 sq/ft production space',
+                    'Appointed as AVL for Safety Products',
+                ],
+                'badge' => 'Plant Expansion',
+            ],
+            [
+                'year' => '2011',
+                'title' => 'Zero Discrepancy Quality Campaign',
+                'highlights' => [
+                    'Launched company-wide Quality Campaign: TOWARDS ZERO DISCREPANCY',
+                ],
+                'badge' => 'Quality Culture',
+            ],
+            [
+                'year' => '2010',
+                'title' => 'ISO 9001: 2008 & Global AVL Appointments',
+                'highlights' => [
+                    'Upgraded and certified ISO 9001: 2008 by Moody International',
+                    'Appointed as AVL for Singapore Machinery, Power Supply Products & Speaker System Products',
+                ],
+                'badge' => 'Global AVL',
+            ],
+            [
+                'year' => '2001 – 2002',
+                'title' => 'Japanese Consumer & Automotive Expansion',
+                'highlights' => [
+                    '2002: Appointed as AVL for Japan Washlet, Printer Products & Coffee Maker Products',
+                    '2001: Appointed as AVL for Audio (Automotive), Motor Products & Power Switches',
+                ],
+                'badge' => 'Consumer & Auto',
+            ],
+            [
+                'year' => '1998 – 1999',
+                'title' => 'ISO 9001: 1994 & Medical Product Entry',
+                'highlights' => [
+                    '1999: Certified ISO 9001: 1994 from Moody International in September',
+                    '1999: Appointed as AVL for Weighing Machine',
+                    '1998: Appointed as AVL for Medical Product from Japan',
+                ],
+                'badge' => 'Medical & ISO',
+            ],
+            [
+                'year' => '1991 – 1996',
+                'title' => 'Foundation in Johor Bahru',
+                'highlights' => [
+                    '1991: Seiko Denki (M) Sdn. Bhd. established on 01 March 1991 by Mr. Tatsuyuki Yamamoto in Tebrau 1, Johor Bahru',
+                    '1996: Appointed as AVL for regional Audio & Video electronics OEMs',
+                ],
+                'badge' => 'Foundation',
+            ],
+        ];
+
+        return view('pages.milestones', compact('milestones'));
+    }
+
+    /**
+     * Associates Page (from seikodenki.com.my)
+     */
+    public function associates()
+    {
+        $associates = [
+            [
+                'country' => 'Japan',
+                'flag' => '🇯🇵',
+                'companies' => [
+                    [
+                        'name' => 'SEIKO DENKI LTD. (KAIBARA)',
+                        'address' => '106, Aguta Kaibara-cho, Hikami-Gun, Hyogo, Japan 669-3314',
+                        'tel' => '0795-70-2059',
+                        'fax' => '0795-70-2059',
+                        'email' => 'uno@seikojapan.co.jp',
+                        'website' => 'http://www.seikojapan.co.jp',
+                    ],
+                    [
+                        'name' => 'SEIKO DENKI LTD.',
+                        'address' => '1062, Uegai Ichijima-cho, Hikami-Gun, Hyogo, Japan 669-4321',
+                        'tel' => '0795-85-0201',
+                        'fax' => '0795-85-2556',
+                        'email' => 'uno@seikojapan.co.jp',
+                        'website' => null,
+                    ],
+                ],
+            ],
+            [
+                'country' => 'Singapore',
+                'flag' => '🇸🇬',
+                'companies' => [
+                    [
+                        'name' => 'DA ZHAN MARKETING PTE. LTD.',
+                        'address' => '25, Bukit Batok Crescent, The Elitist, #10-09, Singapore 658066',
+                        'tel' => null,
+                        'fax' => null,
+                        'email' => null,
+                        'contact' => 'Seiko Denki (M) Sdn. Bhd., Johor Bahru',
+                        'website' => null,
+                    ],
+                ],
+            ],
+            [
+                'country' => 'China',
+                'flag' => '🇨🇳',
+                'companies' => [
+                    [
+                        'name' => 'TOP ZONE (CHINA) CORP. LTD.',
+                        'address' => 'Feng Gang Town, Dong Guan City, Guang Dong, China',
+                        'tel' => '0769-87568781',
+                        'fax' => '0769-87568782',
+                        'email' => 'eric_chan@seikojapan.co.jp',
+                        'website' => null,
+                    ],
+                ],
+            ],
+            [
+                'country' => 'Vietnam',
+                'flag' => '🇻🇳',
+                'companies' => [
+                    [
+                        'name' => 'NGHIEP PHAT TRADING CO. LTD',
+                        'address' => '240A Duong Dinh Hoi - P. Tang Nhon Phu B, Q.9, TP Ho Chi Minh, Vietnam',
+                        'tel' => null,
+                        'fax' => null,
+                        'email' => null,
+                        'website' => null,
+                    ],
+                ],
+            ],
+        ];
+
+        return view('pages.associates', compact('associates'));
+    }
+
+    /**
+     * Our Team Page (from seikodenki.com.my)
+     */
+    public function ourTeam()
+    {
+        $teamCategories = [
+            [
+                'title' => 'Management & Engineering Leadership',
+                'subtitle' => 'Experienced technical and operations leaders driving Japanese quality standards across Tebrau and Senai plants.',
+                'image' => asset('images/real/seiko_team_management.png'),
+                'tag' => 'Leadership',
+            ],
+            [
+                'title' => 'Staff Assembly & Production Floor',
+                'subtitle' => 'Skilled wire harness technicians executing full-scale formboard routing, crimping, and point-to-point assembly.',
+                'image' => asset('images/real/seiko_formboard_assembly.jpg'),
+                'tag' => 'Staff Assembly',
+            ],
+            [
+                'title' => 'Cleanroom Inspection & Task Lighting',
+                'subtitle' => 'Dedicated visual quality assurance specialists performing 100% termination and connector integrity checks.',
+                'image' => asset('images/real/seiko_assembly_operator.png'),
+                'tag' => 'Quality Team',
+            ],
+            [
+                'title' => 'Optical Metrology & Testing Specialists',
+                'subtitle' => 'QA technicians operating PMX-150 digital optical measuring microscopes and continuity testing benches.',
+                'image' => asset('images/real/seiko_pmx150_optical.png'),
+                'tag' => 'Metrology Team',
+            ],
+            [
+                'title' => 'Automotive & Complex Harness Engineers',
+                'subtitle' => 'Technical specialists validating multi-branch automotive and industrial harness looms on test boards.',
+                'image' => asset('images/real/seiko_automotive_loom.jpg'),
+                'tag' => 'Engineering',
+            ],
+        ];
+
+        return view('pages.our-team', compact('teamCategories'));
+    }
+
+    /**
+     * Career Page (from seikodenki.com.my/career/)
+     */
+    public function career()
+    {
+        $jobs = [
+            [
+                'title' => 'Senior Shipping Executive',
+                'level' => 'Senior Executive',
+                'type' => 'Full-Time',
+                'location' => 'Johor',
+                'department' => 'Logistics & Supply Chain',
+                'summary' => 'Manage import/export documentation, customs clearance, freight coordination, and timely overseas customer deliveries.',
+            ],
+            [
+                'title' => 'Project Executive',
+                'level' => 'Senior Executive',
+                'type' => 'Full-Time',
+                'location' => 'Johor',
+                'department' => 'Engineering & NPI',
+                'summary' => 'Coordinate new wire harness NPI transfers, customer BOM validation, sample builds, and engineering change notices.',
+            ],
+            [
+                'title' => 'PROJECT MANAGER',
+                'level' => 'Manager',
+                'type' => 'Full-Time',
+                'location' => 'Johor',
+                'department' => 'Engineering & Operations',
+                'summary' => 'Lead cross-functional OEM customer programs from prototyping through mass production across Tebrau and Senai.',
+            ],
+            [
+                'title' => 'Sales Executive',
+                'level' => 'Senior Executive',
+                'type' => 'Full-Time',
+                'location' => 'Johor',
+                'department' => 'Sales & Marketing',
+                'summary' => 'Develop B2B OEM accounts, prepare RFQ quotations, and maintain strong regional client relationships.',
+            ],
+            [
+                'title' => 'SALES MANAGER',
+                'level' => 'Manager',
+                'type' => 'Full-Time',
+                'location' => 'Johor',
+                'department' => 'Sales & Marketing',
+                'summary' => 'Drive revenue growth across automotive, medical, semiconductor, and industrial wire harness sectors.',
+            ],
+            [
+                'title' => 'Planning Senior Executive / Junior',
+                'level' => 'Senior Executive',
+                'type' => 'Full-Time',
+                'location' => 'Johor',
+                'department' => 'Production Planning (PPC)',
+                'summary' => 'Plan daily production schedules, material MRP allocation, and FIFO warehouse stock control.',
+            ],
+            [
+                'title' => 'Junior Purchasing',
+                'level' => 'Non-Executive',
+                'type' => 'Full-Time',
+                'location' => 'Johor',
+                'department' => 'Procurement',
+                'summary' => 'Source UL wires, terminals, and connectors from approved vendors while ensuring cost and delivery targets.',
+            ],
+            [
+                'title' => 'Executive / Assistant Manager / Manager Marketing Sales',
+                'level' => 'Executive – Manager',
+                'type' => 'Full-Time',
+                'location' => 'Johor, Singapore',
+                'department' => 'Regional Business Development',
+                'summary' => 'Expand key account partnerships across Malaysia and Singapore electronics and industrial manufacturing hubs.',
+            ],
+            [
+                'title' => 'Accounts Internship',
+                'level' => 'Fresh / Entry Level',
+                'type' => 'Internship',
+                'location' => 'Johor',
+                'department' => 'Finance & Accounts',
+                'summary' => 'Hands-on training in AP/AR ledger entries, invoicing, and manufacturing cost accounting.',
+            ],
+            [
+                'title' => 'IT Technician Internship (Software & Hardware)',
+                'level' => 'Fresh / Entry Level',
+                'type' => 'Internship',
+                'location' => 'Johor, Other',
+                'department' => 'Information Technology',
+                'summary' => 'Support plant network infrastructure, workstations, ERP/office systems, and internal web tools.',
+            ],
+            [
+                'title' => 'Internship Production',
+                'level' => 'Fresh / Entry Level',
+                'type' => 'Internship',
+                'location' => 'Johor',
+                'department' => 'Manufacturing Operations',
+                'summary' => 'Gain practical industrial engineering exposure on wire harness production lines, QA testing, and lean workflows.',
+            ],
+        ];
+
+        return view('pages.career', compact('jobs'));
+    }
+
+    /**
+     * Facilities Tour Page (Matched to Old Website: Photo Gallery, Company Videos, Download)
      */
     public function facilities()
     {
-        $facilities = [
+        $photoAlbums = [
             [
-                'title' => 'Automated Multi-Wire Cutting & Stripping Station',
-                'desc' => 'High-precision Japanese automated processing units with computerized length control and dual-end terminal crimping.',
-                'tag' => 'Automated Machinery',
-                'image' => 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=800&q=80',
+                'title' => 'Wire Harness',
+                'count' => 5,
+                'desc' => 'Custom automotive, medical, and industrial wire harness assemblies built to IPC/WHMA-A-620 standards.',
+                'image' => asset('images/real/seiko_automotive_loom.jpg'),
             ],
             [
-                'title' => 'Digital Crimp Force Analysis & Micro-Section Lab',
-                'desc' => 'Continuous real-time crimp force monitoring (CFM) and metallurgical cross-section inspection verifying gas-tight joint crimps.',
-                'tag' => 'QA Testing Station',
-                'image' => 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=800&q=80',
+                'title' => 'Wire Cutting',
+                'count' => 2,
+                'desc' => 'Automated high-speed wire cutting, stripping, and roller straightening precision units.',
+                'image' => asset('images/real/seiko_wire_stripper.png'),
             ],
             [
-                'title' => '100% Computerized Continuity & Hi-Pot Testing Jigs',
-                'desc' => 'Dedicated pin-by-pin electrical continuity, miswire detection, contact resistance, and high-voltage dielectric breakdown testing.',
-                'tag' => 'Electrical Inspection',
-                'image' => 'https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=800&q=80',
+                'title' => 'Process Soldering',
+                'count' => 4,
+                'desc' => 'Controlled precision soldering, tinning, and jig-mounted connector termination stations.',
+                'image' => asset('images/real/seiko_jig_fixture.jpg'),
             ],
             [
-                'title' => 'ISO 13485 Cleanroom Assembly & Packaging',
-                'desc' => 'Dust-controlled environment dedicated to bio-compatible medical cable harnesses and semiconductor front-end cabling.',
-                'tag' => 'Medical Cleanroom',
-                'image' => 'https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?auto=format&fit=crop&w=800&q=80',
-            ]
+                'title' => 'New Project — Security, Medical & Consumer',
+                'count' => 12,
+                'desc' => 'Turn-key wire harness and sub-assembly lines for medical, security, and consumer electronics.',
+                'image' => asset('images/real/seiko_outgoing_inspection.png'),
+            ],
+            [
+                'title' => 'Tester & Metrology',
+                'count' => 1,
+                'desc' => 'PMX-150 digital optical measuring microscope and 100% computerized continuity testing jigs.',
+                'image' => asset('images/real/seiko_pmx150_optical.png'),
+            ],
+            [
+                'title' => 'Machine & Cleanroom Line',
+                'count' => 19,
+                'desc' => 'Dedicated crimping presses, ultrasonic splicers, and task-lit cleanroom inspection benches.',
+                'image' => asset('images/real/seiko_assembly_operator.png'),
+            ],
+            [
+                'title' => 'Layout & Formboard',
+                'count' => 11,
+                'desc' => 'Full-scale industrial pegboard and harness routing layouts across our Tebrau & Senai plants.',
+                'image' => asset('images/real/seiko_formboard_assembly.jpg'),
+            ],
         ];
 
-        return view('pages.facilities', compact('facilities'));
+        $videos = [
+            [
+                'title' => 'Seiko Denki (M) Sdn. Bhd. — Corporate & Factory Overview',
+                'category' => 'General',
+                'youtubeId' => '8GBmyn7jYVc',
+                'url' => 'https://www.youtube.com/watch?v=8GBmyn7jYVc',
+                'desc' => 'Inside our Johor Bahru manufacturing operations, automated wire processing, and quality assurance workflows.',
+            ],
+        ];
+
+        $downloads = [
+            [
+                'title' => 'ISO 9001 Certificate — Seiko Denki (M) Sdn. Bhd.',
+                'category' => 'Quality Certification',
+                'format' => 'PDF Document',
+                'desc' => 'Official ISO 9001 Quality Management System certification document for wire harness manufacturing.',
+                'url' => route('achievements'),
+            ],
+            [
+                'title' => 'RoHS 3 & REACH Compliance Statement',
+                'category' => 'Environmental Compliance',
+                'format' => 'Compliance Guide',
+                'desc' => 'Material declaration and hazardous substance restriction compliance documentation.',
+                'url' => route('achievements'),
+            ],
+        ];
+
+        return view('pages.facilities', compact('photoAlbums', 'videos', 'downloads'));
     }
 
     /**

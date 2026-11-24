@@ -8,11 +8,16 @@ use App\Http\Controllers\ChatbotController;
 Route::get('/', [PageController::class, 'home'])->name('home');
 Route::get('/about-us', [PageController::class, 'about'])->name('about');
 Route::get('/about', fn() => redirect('/about-us'));
+Route::get('/milestones', [PageController::class, 'milestones'])->name('milestones');
+Route::get('/associates', [PageController::class, 'associates'])->name('associates');
+Route::get('/our-team', [PageController::class, 'ourTeam'])->name('team');
 Route::get('/products', [PageController::class, 'products'])->name('products');
+Route::get('/our-products', fn() => redirect('/products'));
 Route::get('/achievements', [PageController::class, 'achievements'])->name('achievements');
 Route::get('/news-events', [PageController::class, 'news'])->name('news');
 Route::get('/news', fn() => redirect('/news-events'));
 Route::get('/facilities', [PageController::class, 'facilities'])->name('facilities');
+Route::get('/career', [PageController::class, 'career'])->name('career');
 Route::get('/contact-us', [PageController::class, 'contact'])->name('contact');
 Route::get('/contact', fn() => redirect('/contact-us'));
 

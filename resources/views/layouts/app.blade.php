@@ -304,10 +304,10 @@
             <!-- Right-Side Navigation Area (Figma Exact) -->
             <div class="flex items-center">
                 <!-- Nav Links with Butter-Smooth Hover Transition -->
-                <div class="hidden md:flex items-center gap-7 lg:gap-10 text-[13px] sm:text-[14px]">
+                <div class="hidden md:flex items-center gap-6 lg:gap-8 text-[13px] sm:text-[14px]">
                     <a 
                         href="{{ route('about') }}" 
-                        class="transition-colors duration-300 ease-in-out font-semibold {{ request()->routeIs('about') ? 'text-[#1b54a5] font-bold' : 'text-slate-500 hover:text-[#1b54a5]' }}"
+                        class="transition-colors duration-300 ease-in-out font-semibold {{ request()->routeIs('about', 'milestones', 'associates', 'team') ? 'text-[#1b54a5] font-bold' : 'text-slate-500 hover:text-[#1b54a5]' }}"
                     >
                         About Us
                     </a>
@@ -315,13 +315,19 @@
                         href="{{ route('products') }}" 
                         class="transition-colors duration-300 ease-in-out font-semibold {{ request()->routeIs('products') ? 'text-[#1b54a5] font-bold' : 'text-slate-500 hover:text-[#1b54a5]' }}"
                     >
-                        Capabilities
+                        Our Product
+                    </a>
+                    <a 
+                        href="{{ route('facilities') }}" 
+                        class="transition-colors duration-300 ease-in-out font-semibold {{ request()->routeIs('facilities') ? 'text-[#1b54a5] font-bold' : 'text-slate-500 hover:text-[#1b54a5]' }}"
+                    >
+                        Facilities
                     </a>
                     <a 
                         href="{{ route('achievements') }}" 
                         class="transition-colors duration-300 ease-in-out font-semibold {{ request()->routeIs('achievements') ? 'text-[#1b54a5] font-bold' : 'text-slate-500 hover:text-[#1b54a5]' }}"
                     >
-                        Compliance &amp; ESG
+                        Achievement
                     </a>
                 </div>
 
@@ -452,7 +458,7 @@
                         </div>
                     </div>
 
-                    <!-- 3. Capabilities -->
+                    <!-- 3. Our Product -->
                     <div 
                         @mouseenter="activeMenuTab = 'capabilities'" 
                         class="group cursor-pointer select-none"
@@ -463,7 +469,7 @@
                             class="text-xl sm:text-2xl tracking-tight block pb-3.5 sm:pb-4 transition-all duration-300 ease-out"
                             :class="activeMenuTab === 'capabilities' ? 'text-white font-bold drop-shadow' : 'text-white/60 font-medium group-hover:text-white'"
                         >
-                            Capabilities
+                            Our Product
                         </a>
                         <div class="flex items-center w-full max-w-[280px] sm:max-w-[320px]">
                             <div 
@@ -551,7 +557,7 @@
                         </svg>
                     </div>
 
-                    <!-- State A: About Us Sub-Items (Clean Text Links with Smooth Slide-in) -->
+                    <!-- State A: About Us Sub-Items (Matched to Old Website) -->
                     <div 
                         x-show="activeMenuTab === 'about'" 
                         x-transition:enter="transition-all ease-out duration-300"
@@ -562,13 +568,13 @@
                         x-transition:leave-end="opacity-0 translate-x-3"
                         class="space-y-6 pt-16 sm:pt-20 pl-10 sm:pl-14 text-base sm:text-lg font-medium"
                     >
-                        <a href="{{ route('about') }}#company-profile" @click="megaMenuOpen = false" class="block text-white/70 hover:text-white hover:translate-x-2 transition-all duration-200 ease-out">Overview</a>
-                        <a href="{{ route('about') }}#milestones" @click="megaMenuOpen = false" class="block text-white/70 hover:text-white hover:translate-x-2 transition-all duration-200 ease-out">Milestones</a>
-                        <a href="{{ route('about') }}#team" @click="megaMenuOpen = false" class="block text-white/70 hover:text-white hover:translate-x-2 transition-all duration-200 ease-out">Our Team</a>
-                        <a href="{{ route('about') }}#affiliations" @click="megaMenuOpen = false" class="block text-white/70 hover:text-white hover:translate-x-2 transition-all duration-200 ease-out">Our Associates</a>
+                        <a href="{{ route('about') }}" @click="megaMenuOpen = false" class="block text-white/70 hover:text-white hover:translate-x-2 transition-all duration-200 ease-out">Company Profile</a>
+                        <a href="{{ route('milestones') }}" @click="megaMenuOpen = false" class="block text-white/70 hover:text-white hover:translate-x-2 transition-all duration-200 ease-out">Milestone</a>
+                        <a href="{{ route('associates') }}" @click="megaMenuOpen = false" class="block text-white/70 hover:text-white hover:translate-x-2 transition-all duration-200 ease-out">Associates</a>
+                        <a href="{{ route('team') }}" @click="megaMenuOpen = false" class="block text-white/70 hover:text-white hover:translate-x-2 transition-all duration-200 ease-out">Our Team</a>
                     </div>
 
-                    <!-- State B: Default / Capabilities Items (Industries Served, Compliance & ESG, News & Insights) -->
+                    <!-- State B: Default Items (Our Product, Achievement, News & Events) -->
                     <div 
                         x-show="activeMenuTab !== 'about'" 
                         x-transition:enter="transition-all ease-out duration-300"
@@ -579,28 +585,28 @@
                         x-transition:leave-end="opacity-0 translate-x-3"
                         class="space-y-8 sm:space-y-10"
                     >
-                        <!-- Industries Served -->
+                        <!-- Our Product -->
                         <div 
-                            @mouseenter="activeCol2Tab = 'industries'" 
+                            @mouseenter="activeCol2Tab = 'products'" 
                             @mouseleave="activeCol2Tab = null"
                             class="group cursor-pointer select-none"
                         >
                             <a 
-                                href="{{ route('products') }}#industries" 
+                                href="{{ route('products') }}" 
                                 @click="megaMenuOpen = false"
                                 class="text-xl sm:text-2xl tracking-tight block pb-3.5 sm:pb-4 transition-all duration-300 ease-out"
-                                :class="activeCol2Tab === 'industries' ? 'text-white font-bold drop-shadow' : 'text-white/60 font-medium group-hover:text-white'"
+                                :class="activeCol2Tab === 'products' ? 'text-white font-bold drop-shadow' : 'text-white/60 font-medium group-hover:text-white'"
                             >
-                                Industries Served
+                                Our Product
                             </a>
                             <div class="flex items-center w-full max-w-[280px] sm:max-w-[320px]">
                                 <div 
                                     class="flex-1 h-[1.5px] transition-all duration-300 ease-out"
-                                    :class="activeCol2Tab === 'industries' ? 'bg-white' : 'bg-white/20 group-hover:bg-white'"
+                                    :class="activeCol2Tab === 'products' ? 'bg-white' : 'bg-white/20 group-hover:bg-white'"
                                 ></div>
                                 <svg 
                                     class="w-10 h-2.5 transition-all duration-300 ease-out flex-shrink-0"
-                                    :class="activeCol2Tab === 'industries' ? 'text-white stroke-white' : 'text-white/30 stroke-white/30 group-hover:text-white group-hover:stroke-white'"
+                                    :class="activeCol2Tab === 'products' ? 'text-white stroke-white' : 'text-white/30 stroke-white/30 group-hover:text-white group-hover:stroke-white'"
                                     viewBox="0 0 40 10" 
                                     fill="none"
                                 >
@@ -608,14 +614,14 @@
                                 </svg>
                                 <div 
                                     class="w-8 sm:w-12 h-[1.5px] transition-all duration-300 ease-out flex-shrink-0"
-                                    :class="activeCol2Tab === 'industries' ? 'bg-white' : 'bg-white/20 group-hover:bg-white'"
+                                    :class="activeCol2Tab === 'products' ? 'bg-white' : 'bg-white/20 group-hover:bg-white'"
                                 ></div>
                             </div>
                         </div>
 
-                        <!-- Compliance & ESG -->
+                        <!-- Achievement -->
                         <div 
-                            @mouseenter="activeCol2Tab = 'compliance'" 
+                            @mouseenter="activeCol2Tab = 'achievement'" 
                             @mouseleave="activeCol2Tab = null"
                             class="group cursor-pointer select-none"
                         >
@@ -623,18 +629,18 @@
                                 href="{{ route('achievements') }}" 
                                 @click="megaMenuOpen = false"
                                 class="text-xl sm:text-2xl tracking-tight block pb-3.5 sm:pb-4 transition-all duration-300 ease-out"
-                                :class="activeCol2Tab === 'compliance' ? 'text-white font-bold drop-shadow' : 'text-white/60 font-medium group-hover:text-white'"
+                                :class="activeCol2Tab === 'achievement' ? 'text-white font-bold drop-shadow' : 'text-white/60 font-medium group-hover:text-white'"
                             >
-                                Compliance &amp; ESG
+                                Achievement
                             </a>
                             <div class="flex items-center w-full max-w-[280px] sm:max-w-[320px]">
                                 <div 
                                     class="flex-1 h-[1.5px] transition-all duration-300 ease-out"
-                                    :class="activeCol2Tab === 'compliance' ? 'bg-white' : 'bg-white/20 group-hover:bg-white'"
+                                    :class="activeCol2Tab === 'achievement' ? 'bg-white' : 'bg-white/20 group-hover:bg-white'"
                                 ></div>
                                 <svg 
                                     class="w-10 h-2.5 transition-all duration-300 ease-out flex-shrink-0"
-                                    :class="activeCol2Tab === 'compliance' ? 'text-white stroke-white' : 'text-white/30 stroke-white/30 group-hover:text-white group-hover:stroke-white'"
+                                    :class="activeCol2Tab === 'achievement' ? 'text-white stroke-white' : 'text-white/30 stroke-white/30 group-hover:text-white group-hover:stroke-white'"
                                     viewBox="0 0 40 10" 
                                     fill="none"
                                 >
@@ -642,12 +648,12 @@
                                 </svg>
                                 <div 
                                     class="w-8 sm:w-12 h-[1.5px] transition-all duration-300 ease-out flex-shrink-0"
-                                    :class="activeCol2Tab === 'compliance' ? 'bg-white' : 'bg-white/20 group-hover:bg-white'"
+                                    :class="activeCol2Tab === 'achievement' ? 'bg-white' : 'bg-white/20 group-hover:bg-white'"
                                 ></div>
                             </div>
                         </div>
 
-                        <!-- News & Insights -->
+                        <!-- News & Events -->
                         <div 
                             @mouseenter="activeCol2Tab = 'news'" 
                             @mouseleave="activeCol2Tab = null"
@@ -659,7 +665,7 @@
                                 class="text-xl sm:text-2xl tracking-tight block pb-3.5 sm:pb-4 transition-all duration-300 ease-out"
                                 :class="activeCol2Tab === 'news' ? 'text-white font-bold drop-shadow' : 'text-white/60 font-medium group-hover:text-white'"
                             >
-                                News &amp; Insights
+                                News &amp; Events
                             </a>
                             <div class="flex items-center w-full max-w-[280px] sm:max-w-[320px]">
                                 <div 
@@ -689,7 +695,7 @@
                 <div class="lg:col-span-3 space-y-4 lg:pl-6 select-none">
                     <h4 class="text-base sm:text-lg font-bold text-white tracking-tight mb-4">Others</h4>
                     <div class="space-y-3.5 text-sm sm:text-base text-white/70 font-medium">
-                        <a href="{{ route('about') }}#career" @click="megaMenuOpen = false" class="block hover:text-white hover:translate-x-1.5 transition-all duration-200 ease-out">Career</a>
+                        <a href="{{ route('career') }}" @click="megaMenuOpen = false" class="block hover:text-white hover:translate-x-1.5 transition-all duration-200 ease-out">Career</a>
                         <a href="{{ route('contact') }}#faq" @click="megaMenuOpen = false" class="block hover:text-white hover:translate-x-1.5 transition-all duration-200 ease-out">FAQs</a>
                         <a href="{{ route('contact') }}" @click="megaMenuOpen = false" class="block hover:text-white hover:translate-x-1.5 transition-all duration-200 ease-out">Contact Us</a>
                         <a href="{{ route('analytics') }}" @click="megaMenuOpen = false" class="block hover:text-white transition-colors text-xs text-sky-200 pt-2">Executive Traffic Report</a>
@@ -727,62 +733,51 @@
         
         <div class="max-w-[1400px] mx-auto px-4 sm:px-8 lg:px-12">
             
-            <!-- Top Footer Navigation Grid (Clean 6 Columns - Exactly matching Figma Information Architecture) -->
-            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-8 sm:gap-10 pb-16 sm:pb-20">
+            <!-- Top Footer Navigation Grid (Clean 5 Columns - Industries Served Removed) -->
+            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-8 sm:gap-10 pb-16 sm:pb-20">
                 
                 <!-- Col 1: Home -->
                 <div class="space-y-3.5">
                     <h5 class="text-xs sm:text-[13px] font-bold text-white tracking-wide uppercase">Home</h5>
                     <ul class="space-y-2.5 text-xs text-white/80 font-normal">
                         <li><a href="{{ route('home') }}" class="footer-nav-link">Overview</a></li>
-                        <li><a href="{{ route('products') }}" class="footer-nav-link">Capabilities</a></li>
+                        <li><a href="{{ route('products') }}" class="footer-nav-link">Our Product</a></li>
                         <li><a href="{{ route('facilities') }}" class="footer-nav-link">Facilities</a></li>
                     </ul>
                 </div>
 
-                <!-- Col 2: Industries -->
-                <div class="space-y-3.5">
-                    <h5 class="text-xs sm:text-[13px] font-bold text-white tracking-wide uppercase">Industries Served</h5>
-                    <ul class="space-y-2.5 text-xs text-white/80 font-normal">
-                        <li><a href="{{ route('home') }}#industries-we-serve" class="footer-nav-link">Industrial Automation</a></li>
-                        <li><a href="{{ route('home') }}#industries-we-serve" class="footer-nav-link">Automotive & Transport</a></li>
-                        <li><a href="{{ route('home') }}#industries-we-serve" class="footer-nav-link">Medical & Healthcare</a></li>
-                        <li><a href="{{ route('achievements') }}" class="footer-nav-link">Compliance & ESG</a></li>
-                    </ul>
-                </div>
-
-                <!-- Col 3: About Us -->
+                <!-- Col 2: About Us -->
                 <div class="space-y-3.5">
                     <h5 class="text-xs sm:text-[13px] font-bold text-white tracking-wide uppercase">About Us</h5>
                     <ul class="space-y-2.5 text-xs text-white/80 font-normal">
-                        <li><a href="{{ route('about') }}" class="footer-nav-link">Overview</a></li>
-                        <li><a href="{{ route('about') }}#company-profile" class="footer-nav-link">Milestones</a></li>
-                        <li><a href="{{ route('about') }}#team" class="footer-nav-link">Our Team</a></li>
-                        <li><a href="{{ route('about') }}#associates" class="footer-nav-link">Our Associates</a></li>
+                        <li><a href="{{ route('about') }}" class="footer-nav-link">Company Profile</a></li>
+                        <li><a href="{{ route('milestones') }}" class="footer-nav-link">Milestone</a></li>
+                        <li><a href="{{ route('associates') }}" class="footer-nav-link">Associates</a></li>
+                        <li><a href="{{ route('team') }}" class="footer-nav-link">Our Team</a></li>
                     </ul>
                 </div>
 
-                <!-- Col 4: Insights -->
+                <!-- Col 3: Updates & Recognition -->
                 <div class="space-y-3.5">
-                    <h5 class="text-xs sm:text-[13px] font-bold text-white tracking-wide uppercase">Insights</h5>
+                    <h5 class="text-xs sm:text-[13px] font-bold text-white tracking-wide uppercase">Updates</h5>
                     <ul class="space-y-2.5 text-xs text-white/80 font-normal">
-                        <li><a href="{{ route('news') }}" class="footer-nav-link">Events</a></li>
-                        <li><a href="{{ route('news') }}" class="footer-nav-link">Articles</a></li>
-                        <li><a href="{{ route('achievements') }}" class="footer-nav-link">Standards</a></li>
+                        <li><a href="{{ route('achievements') }}" class="footer-nav-link">Achievement</a></li>
+                        <li><a href="{{ route('news') }}" class="footer-nav-link">News &amp; Events</a></li>
+                        <li><a href="{{ route('facilities') }}#download" class="footer-nav-link">Downloads</a></li>
                     </ul>
                 </div>
 
-                <!-- Col 5: Others -->
+                <!-- Col 4: Others -->
                 <div class="space-y-3.5">
                     <h5 class="text-xs sm:text-[13px] font-bold text-white tracking-wide uppercase">Others</h5>
                     <ul class="space-y-2.5 text-xs text-white/80 font-normal">
-                        <li><a href="{{ route('about') }}#career" class="footer-nav-link">Career</a></li>
+                        <li><a href="{{ route('career') }}" class="footer-nav-link">Career</a></li>
                         <li><a href="{{ route('contact') }}#faq" class="footer-nav-link">FAQs</a></li>
                         <li><a href="{{ route('contact') }}" class="footer-nav-link">Contact Us</a></li>
                     </ul>
                 </div>
 
-                <!-- Col 6: Legal -->
+                <!-- Col 5: Legal -->
                 <div class="space-y-3.5">
                     <h5 class="text-xs sm:text-[13px] font-bold text-white tracking-wide uppercase">Legal</h5>
                     <ul class="space-y-2.5 text-xs text-white/80 font-normal">
