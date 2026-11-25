@@ -64,7 +64,8 @@
                                 <span class="font-bold text-slate-900 block text-xs uppercase text-slate-400">Telephone / Fax</span>
                                 <p class="text-xs sm:text-sm text-slate-700 font-normal">
                                     Tel: <a href="tel:+6073548282" class="text-[#1b54a5] font-bold hover:underline">+607-354 8282</a><br />
-                                    Fax: +607-354 8283
+                                    Fax: +607-354 8283<br />
+                                    WhatsApp: <a href="https://wa.me/60127106282" target="_blank" rel="noopener" class="text-emerald-600 font-bold hover:underline">+60 12-710 6282</a>
                                 </p>
                             </div>
                         </div>

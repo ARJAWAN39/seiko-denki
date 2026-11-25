@@ -29,7 +29,7 @@ class ChatbotController extends Controller
                  . $notes . "\n\n"
                  . "Looking forward to your advice and quotation.";
 
-        $phone = config('app.whatsapp_number', '60123548282');
+        $phone = config('app.whatsapp_number', '60127106282');
         $encoded = urlencode($message);
         $whatsappUrl = "https://wa.me/{$phone}?text={$encoded}";
 

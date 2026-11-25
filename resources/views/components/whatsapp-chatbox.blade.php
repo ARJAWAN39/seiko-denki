@@ -23,7 +23,7 @@
             const notesPart = this.projectNotes ? `\n\n*Project Specifications:* ${this.projectNotes}` : '';
             const message = `Hello Seiko Denki Sales & Engineering Team,\n\nMy name is *${this.visitorName}*${companyPart}.\nI am inquiring regarding: *${this.selectedIntent}*.${notesPart}\n\nLooking forward to your advice and quotation.`;
             const encoded = encodeURIComponent(message);
-            const whatsappUrl = `https://wa.me/60123548282?text=${encoded}`;
+            const whatsappUrl = `https://wa.me/60127106282?text=${encoded}`;
             window.open(whatsappUrl, '_blank');
             this.chatOpen = false;
         }
