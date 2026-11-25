@@ -693,7 +693,7 @@ class PageController extends Controller
                 'title' => 'Wire Harness',
                 'count' => 5,
                 'desc' => 'Custom automotive, medical, and industrial wire harness assemblies built to IPC/WHMA-A-620 standards.',
-                'image' => asset('images/real/seiko_automotive_loom.jpg'),
+                'image' => asset('images/real/seiko_wire_harness_board.jpg'),
             ],
             [
                 'title' => 'Wire Cutting',
