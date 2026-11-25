@@ -15,8 +15,8 @@
                 image: '{{ asset('images/hd/hero_slide_1.jpg') }}',
                 headline: 'Precision Custom Wire Harness<br>&amp; Cable Assembly Manufacturer',
                 subtitle: 'Delivering Build-to-Print OEM & ODM wire harness manufacturing solutions from Johor Bahru, Malaysia to global electronics and industrial leaders.',
-                cta2Text: 'Our Capabilities',
-                cta2Url: '{{ route('products') }}'
+                cta2Text: 'Our Facilities',
+                cta2Url: '{{ route('facilities') }}'
             },
             {
                 image: '{{ asset('images/hd/hero_slide_2.jpg') }}',
