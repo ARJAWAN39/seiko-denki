@@ -684,6 +684,33 @@ class PageController extends Controller
     }
 
     /**
+     * Handle Career Application & Resume Upload
+     */
+    public function applyCareer(Request $request)
+    {
+        $validated = $request->validate([
+            'name' => 'required|string|max:120',
+            'email' => 'required|email|max:150',
+            'phone' => 'required|string|max:40',
+            'position' => 'required|string|max:150',
+            'note' => 'required|string|max:2000',
+            'resume' => 'required|file|mimes:pdf,doc,docx|max:5120',
+        ]);
+
+        $resumePath = null;
+        if ($request->hasFile('resume')) {
+            $resumePath = $request->file('resume')->store('resumes', 'public');
+        }
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Application and resume uploaded successfully.',
+            'resume_file' => $request->file('resume')?->getClientOriginalName(),
+            'stored_path' => $resumePath,
+        ]);
+    }
+
+    /**
      * Facilities Tour Page (Matched to Old Website: Photo Gallery, Company Videos, Download)
      */
     public function facilities()

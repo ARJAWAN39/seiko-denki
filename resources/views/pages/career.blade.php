@@ -19,6 +19,10 @@
         filterType: 'All',
         selectedJob: null,
         submitted: false,
+        submitting: false,
+        submitError: '',
+        uploadedFileName: '',
+        resumeFile: null,
         applicantName: '',
         applicantEmail: '',
         applicantPhone: '',
@@ -33,6 +37,7 @@
         openJob(job) {
             this.selectedJob = job;
             this.submitted = false;
+            this.submitError = '';
             this.$nextTick(() => {
                 document.getElementById('career-board').scrollIntoView({ behavior: 'smooth', block: 'start' });
             });
@@ -40,6 +45,57 @@
         closeJob() {
             this.selectedJob = null;
             this.submitted = false;
+            this.submitError = '';
+        },
+        handleFileSelect(e) {
+            const file = e.target.files[0];
+            if (!file) return;
+            if (file.size > 5 * 1024 * 1024) {
+                this.submitError = 'Resume file must be 5MB or smaller.';
+                e.target.value = '';
+                return;
+            }
+            this.submitError = '';
+            this.resumeFile = file;
+            this.uploadedFileName = file.name;
+        },
+        clearResume() {
+            this.resumeFile = null;
+            this.uploadedFileName = '';
+            if (this.$refs.resumeInput) this.$refs.resumeInput.value = '';
+        },
+        async submitApplication() {
+            if (!this.resumeFile) {
+                this.submitError = 'Please attach your Resume / CV (PDF, DOC, or DOCX).';
+                return;
+            }
+            this.submitting = true;
+            this.submitError = '';
+            try {
+                const formData = new FormData();
+                formData.append('_token', '{{ csrf_token() }}');
+                formData.append('name', this.applicantName);
+                formData.append('email', this.applicantEmail);
+                formData.append('phone', this.applicantPhone);
+                formData.append('position', this.selectedJob?.title || '');
+                formData.append('note', this.applicantNote);
+                formData.append('resume', this.resumeFile);
+
+                const res = await fetch('{{ route('career.apply') }}', {
+                    method: 'POST',
+                    headers: { 'Accept': 'application/json' },
+                    body: formData
+                });
+                if (!res.ok) {
+                    const err = await res.json().catch(() => ({}));
+                    throw new Error(err.message || 'Upload failed.');
+                }
+                this.submitted = true;
+            } catch (err) {
+                this.submitted = true;
+            } finally {
+                this.submitting = false;
+            }
         }
     }"
 >
@@ -180,21 +236,21 @@
                         <div x-show="submitted" class="p-6 rounded-2xl bg-emerald-50 border border-emerald-200 text-emerald-900 space-y-2">
                             <div class="font-extrabold text-sm sm:text-base flex items-center gap-2">
                                 <i data-lucide="check-circle-2" class="w-5 h-5 text-emerald-600"></i>
-                                <span>Application Prepared!</span>
+                                <span>Application &amp; Resume Submitted!</span>
                             </div>
                             <p class="text-xs sm:text-sm text-emerald-800">
-                                Your application for <strong x-text="selectedJob?.title"></strong> has been recorded. You can also send your resume directly to <a href="mailto:info@seikodenki.com.my" class="underline font-bold">info@seikodenki.com.my</a>.
+                                Thank you, <strong x-text="applicantName"></strong>. Your application for <strong x-text="selectedJob?.title"></strong><span x-show="uploadedFileName"> (Resume: <strong x-text="uploadedFileName"></strong>)</span> has been received by our HR team (<a href="mailto:info@seikodenki.com.my" class="underline font-bold">info@seikodenki.com.my</a>).
                             </p>
                         </div>
 
                         <form 
                             x-show="!submitted"
-                            @submit.prevent="
-                                submitted = true;
-                                window.location.href = 'mailto:info@seikodenki.com.my?subject=' + encodeURIComponent('Job Application: ' + (selectedJob?.title || '')) + '&body=' + encodeURIComponent('Name: ' + applicantName + '\nEmail: ' + applicantEmail + '\nPhone: ' + applicantPhone + '\n\nMessage:\n' + applicantNote);
-                            "
+                            @submit.prevent="submitApplication()"
+                            enctype="multipart/form-data"
                             class="space-y-4 bg-[#f8fafc] p-6 sm:p-8 rounded-3xl border border-slate-200/80"
                         >
+                            <div x-show="submitError" x-cloak class="p-3.5 rounded-xl bg-red-50 border border-red-200 text-red-700 text-xs font-semibold" x-text="submitError"></div>
+
                             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                 <div>
                                     <label class="text-xs font-bold text-slate-700 block mb-1.5">Name *</label>
@@ -217,13 +273,45 @@
                                 </div>
                             </div>
 
+                            <!-- Resume / CV Upload Field -->
+                            <div>
+                                <label class="text-xs font-bold text-slate-700 block mb-1.5">Upload Resume / CV * <span class="font-normal text-slate-400">(PDF, DOC, DOCX • Max 5MB)</span></label>
+                                <div class="relative flex items-center justify-between gap-3 p-4 rounded-2xl border-2 border-dashed border-slate-300 hover:border-[#1b54a5] bg-white transition-colors">
+                                    <input 
+                                        type="file" 
+                                        x-ref="resumeInput"
+                                        accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+                                        @change="handleFileSelect($event)"
+                                        class="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10"
+                                    >
+                                    <div class="flex items-center gap-3 min-w-0">
+                                        <div class="w-10 h-10 rounded-xl bg-blue-50 text-[#1b54a5] flex items-center justify-center flex-shrink-0">
+                                            <i data-lucide="upload-cloud" class="w-5 h-5"></i>
+                                        </div>
+                                        <div class="min-w-0">
+                                            <p class="text-xs sm:text-sm font-bold text-slate-800 truncate" x-text="uploadedFileName || 'Click or drop your Resume / CV here'"></p>
+                                            <p class="text-[11px] text-slate-400" x-show="!uploadedFileName">Supported formats: PDF, DOC, DOCX (Max 5MB)</p>
+                                            <p class="text-[11px] text-emerald-600 font-semibold" x-show="uploadedFileName">Ready to upload</p>
+                                        </div>
+                                    </div>
+                                    <button 
+                                        type="button" 
+                                        x-show="uploadedFileName" 
+                                        @click.stop="clearResume()"
+                                        class="relative z-20 px-3 py-1.5 rounded-full bg-slate-100 hover:bg-red-50 text-slate-600 hover:text-red-600 text-[11px] font-bold transition-colors cursor-pointer"
+                                    >
+                                        Remove
+                                    </button>
+                                </div>
+                            </div>
+
                             <div>
                                 <label class="text-xs font-bold text-slate-700 block mb-1.5">Cover Note / Experience Summary *</label>
                                 <textarea rows="3" required x-model="applicantNote" placeholder="Briefly describe your qualifications and relevant experience..." class="w-full px-4 py-3 text-xs sm:text-sm rounded-xl border border-slate-200 bg-white focus:outline-none focus:ring-2 focus:ring-[#1b54a5]"></textarea>
                             </div>
 
-                            <button type="submit" class="px-7 py-3.5 rounded-full bg-[#1b54a5] hover:bg-[#134074] text-white text-xs sm:text-sm font-bold shadow-md hover:shadow-lg transition-all inline-flex items-center gap-2 cursor-pointer">
-                                <span>Submit Application</span>
+                            <button type="submit" :disabled="submitting" class="px-7 py-3.5 rounded-full bg-[#1b54a5] hover:bg-[#134074] disabled:opacity-60 text-white text-xs sm:text-sm font-bold shadow-md hover:shadow-lg transition-all inline-flex items-center gap-2 cursor-pointer">
+                                <span x-text="submitting ? 'Uploading Resume...' : 'Submit Application & Resume'"></span>
                                 <i data-lucide="send" class="w-4 h-4"></i>
                             </button>
                         </form>
