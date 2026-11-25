@@ -1003,11 +1003,27 @@ class PageController extends Controller
     }
 
     /**
-     * Events & News Dataset (Mirrored from seikodenki.com.my/latestnews/)
+     * Events & News Dataset (Mirrored from seikodenki.com.my/latestnews/ + Latest Corporate Events)
      */
     private function getNews(): array
     {
         return [
+            [
+                'id' => 'news-gba-2019',
+                'title' => 'Golden Bull Award 2019',
+                'date' => '2019',
+                'category' => 'Corporate Event',
+                'summary' => 'Celebrating business achievements at the Golden Bull Award 2019.',
+                'image' => asset('images/achievements/event_gba_gala.jpg'),
+            ],
+            [
+                'id' => 'news-iftar',
+                'title' => 'Seiko Denki Team Iftar Celebration',
+                'date' => 'Team Gathering',
+                'category' => 'Team Event',
+                'summary' => 'A memorable Iftar celebration with the Seiko Denki team, sharing blessings and joyful moments.',
+                'image' => asset('images/old_site/events/event_iftar.jpg'),
+            ],
             [
                 'id' => 'news-1',
                 'title' => 'Happy Deepavali!',
