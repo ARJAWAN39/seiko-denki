@@ -249,7 +249,9 @@
                     <!-- Watch Our Story Interactive Trigger with Oscilloscope Waveform (Harmonized with More Details button style) -->
                     <div class="pt-2 relative z-10">
                         <a 
-                            href="#video-story" 
+                            href="https://youtu.be/8GBmyn7jYVc?si=Acs4-_4A-dSfMggf" 
+                            target="_blank" 
+                            rel="noopener noreferrer"
                             class="group inline-flex flex-col items-start cursor-pointer select-none transition-all duration-300 ease-out"
                         >
                             <!-- Text & Icon shift right on hover -->
